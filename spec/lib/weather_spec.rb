@@ -5,10 +5,6 @@ describe OpenWeather do
 
   it { expect(subject).to be_a OpenWeather::Configuration }
 
-  it 'default config values' do
-    expect(subject.configuration.api_key).to be_nil
-  end
-
   describe '.configure' do
     context 'when block given' do
       it 'should be able to set configuration values' do
@@ -43,12 +39,11 @@ describe OpenWeather do
 
       context 'When the city can not be found' do
         let(:response) { create_weather_not_found }
-        
+
         before do
           stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=#{OpenWeather.configuration.api_key}&q=Athens,Greece").
             to_return(status: 404, body: response.to_json, headers: {})
         end
-
 
         it { expect{subject}.to raise_error{ OpenWeather::CityNotFoundError } }
       end
