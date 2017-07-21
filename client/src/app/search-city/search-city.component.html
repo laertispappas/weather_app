@@ -1,0 +1,20 @@
+<form (ngSubmit)="fetchWeather()" #f="ngForm" >
+  <div class="row">
+    <div class="input-field col s6">
+      <input id="country"
+      type="text"
+      required
+      name='country' class="validate">
+      <label for="country">Country</label>
+    </div>
+
+    <div class="input-field col s6">
+      <input id="city" type="text" required  name='city' class="validate">
+      <label for="city">City</label>
+    </div>
+
+    <div class="col s12">
+      <button type="submit" [disabled]="!(f.valid)" class="waves-effect waves-light btn blue right"> Search </button>
+    </div>
+  </div>
+</form>
