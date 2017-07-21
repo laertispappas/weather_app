@@ -7,6 +7,7 @@ end
 gem 'rails', '~> 5.1.2'
 gem 'puma', '~> 3.7'
 
+gem 'rest-client'
 # gem 'rack-cors'
 
 group :development, :test do
@@ -17,6 +18,7 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'webmock'
 end
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
