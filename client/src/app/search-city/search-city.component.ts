@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 
 import {WeatherService} from '../services/weather.service';
+import {AlertService} from '../services/alert.service';
 
 @Component({
   selector: 'app-search-city',
@@ -15,7 +16,10 @@ export class SearchCityComponent implements OnInit, OnDestroy {
   search;
   result: any;
 
-  constructor(private _weatherService: WeatherService, private router: Router, private route: ActivatedRoute) {
+  constructor(private _weatherService: WeatherService,
+              private _alertService: AlertService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.search = {
       city: "",
       country: ""
@@ -31,8 +35,8 @@ export class SearchCityComponent implements OnInit, OnDestroy {
         this._weatherService.search(this.search).subscribe((city) => {
           this.result = city;
         },(error) => {
-          // TODO: Notification service here
-          console.log(error);
+          this.result = null;
+          this._alertService.error(error.json().error);
         });
       }
     })

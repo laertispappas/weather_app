@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { WeatherService } from './services/weather.service'
+import { AlertService } from './services/alert.service'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -14,6 +15,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SearchCityComponent } from './search-city/search-city.component';
 import { CityWeatherComponent } from './city-weather/city-weather.component';
 import { CitiesListComponent } from './cities-list/cities-list.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { CitiesListComponent } from './cities-list/cities-list.component';
     ToolbarComponent,
     SearchCityComponent,
     CityWeatherComponent,
-    CitiesListComponent
+    CitiesListComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { CitiesListComponent } from './cities-list/cities-list.component';
     AppRoutingModule,
     MaterializeModule
   ],
-  providers: [WeatherService],
+  providers: [WeatherService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
