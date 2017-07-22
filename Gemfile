@@ -8,7 +8,7 @@ gem 'rails', '~> 5.1.2'
 gem 'puma', '~> 3.7'
 
 gem 'rest-client'
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
