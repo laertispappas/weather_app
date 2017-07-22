@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resource :weather, only: [:show]
-      resource :forecast, only: [:show]
+      get 'cities', to: 'weather#index'
+      get 'weather', to: 'weather#show'
+      get 'forecast', to: 'forecasts#show'
     end
   end
 end

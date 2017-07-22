@@ -19,7 +19,7 @@ module OpenWeather
   class Base
     include HttpClient
 
-    VALID_ATTRS = [:city, :country, :units]
+    VALID_ATTRS = [:city, :country, :units, :lat, :lon]
 
     attr_reader :options
 

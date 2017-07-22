@@ -1,6 +1,8 @@
 require "open_weather/configuration"
 require 'open_weather/base'
 require 'open_weather/current'
+require 'open_weather/finder'
+require 'open_weather/forecast'
 
 module OpenWeather
   # A simple wrapper around OpenWeatherMap API.
@@ -18,7 +20,11 @@ module OpenWeather
     #   OpenWeather.city(city: 'Athens', country: 'Greece', units: 'metric')
     #
     def city(**kwargs)
-      Current.new(kwargs).fetch
+      OpenWeather::Current.new(kwargs).fetch
+    end
+
+    def find(**kwargs)
+      OpenWeather::Finder.new(kwargs).fetch
     end
   end
 
@@ -26,7 +32,7 @@ module OpenWeather
     # Get forecast data for a location
     #
     def forecast(**kwargs)
-      Forecast.new(kwargs).fetch
+      OpenWeather::Forecast.new(kwargs).fetch
     end
   end
 

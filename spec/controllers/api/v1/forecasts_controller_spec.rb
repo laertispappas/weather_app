@@ -48,7 +48,16 @@ module Api
         end
 
         # TODO DRY this
-        context 'when the city can not be found'
+        context 'when the city can not be found' do
+          before do
+            stub_request(:get, "http://api.openweathermap.org/data/2.5/forecast?appid=Some&city&country&units=metric").
+              to_return(status: 404, body: {a: 1}.to_json, headers: {})
+
+            get :show, params: { format: :json }
+          end
+
+          it { expect(response.status).to eq 404 }
+        end
       end
     end
   end

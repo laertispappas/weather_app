@@ -166,3 +166,124 @@ def create_forecast_response(**kwargs)
 
   JSON.parse(json)
 end
+
+def find_cities
+  json = <<-JSON
+  {
+    "message": "accurate",
+    "cod": "200",
+    "count": 3,
+    "list": [
+      {
+        "id": 495260,
+        "name": "Shcherbinka",
+        "coord": {
+        "lat": 55.4997,
+        "lon": 37.5597
+      },
+      "main": {
+        "temp": 15,
+        "pressure": 1015,
+        "humidity": 82,
+        "temp_min": 15,
+        "temp_max": 15
+      },
+      "dt": 1500746400,
+      "wind": {
+        "speed": 1,
+        "deg": 220
+      },
+      "sys": {
+        "country": ""
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "Sky is Clear",
+          "icon": "01n"
+        }
+      ]
+      },
+      {
+        "id": 564517,
+        "name": "Dubrovitsy",
+        "coord": {
+        "lat": 55.4397,
+        "lon": 37.4867
+      },
+      "main": {
+        "temp": 15,
+        "pressure": 1015,
+        "humidity": 82,
+        "temp_min": 15,
+        "temp_max": 15
+      },
+      "dt": 1500746400,
+      "wind": {
+        "speed": 1,
+        "deg": 220
+      },
+      "sys": {
+        "country": ""
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "Sky is Clear",
+          "icon": "01n"
+        }
+      ]
+      },
+      {
+        "id": 570578,
+        "name": "Butovo",
+        "coord": {
+        "lat": 55.5483,
+        "lon": 37.5797
+      },
+      "main": {
+        "temp": 15,
+        "pressure": 1015,
+        "humidity": 82,
+        "temp_min": 15,
+        "temp_max": 15
+      },
+      "dt": 1500746400,
+      "wind": {
+        "speed": 1,
+        "deg": 220
+      },
+      "sys": {
+        "country": ""
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "Sky is Clear",
+          "icon": "01n"
+        }
+      ]
+      }
+  ]
+  }
+  JSON
+  JSON.parse(json)
+end
