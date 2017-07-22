@@ -1,3 +1,5 @@
+<app-preloader *ngIf="loading"></app-preloader>
+
 <div *ngIf="cities">
   <div *ngFor="let city of cities">
     <app-city-weather [current]="city"></app-city-weather>
