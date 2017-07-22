@@ -4,12 +4,16 @@
       <input id="country"
       type="text"
       required
+      [(ngModel)]="search.country"
       name='country' class="validate">
       <label for="country">Country</label>
     </div>
 
     <div class="input-field col s6">
-      <input id="city" type="text" required  name='city' class="validate">
+      <input id="city" type="text"
+      required
+      [(ngModel)]="search.city"
+      name='city' class="validate">
       <label for="city">City</label>
     </div>
 

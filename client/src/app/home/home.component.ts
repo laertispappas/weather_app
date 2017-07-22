@@ -6,13 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  title: string;
+  current: any;
 
   constructor() {
-    this.title = "Weather Around The World"
   }
 
   ngOnInit() {
+    // TODO: Fetch a list weather on random cities
+  }
+
+  searchEvent(current) {
+    this.current = current
+    console.log(current)
   }
 
 }

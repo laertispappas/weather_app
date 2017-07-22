@@ -1,1 +1,2 @@
-{{ title }}
+<app-search-city (searchResult)="searchEvent($event)"></app-search-city>
+<app-city-weather *ngIf="current" [current]="current"></app-city-weather>
