@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SearchCityComponent } from './search-city/search-city.component';
 import { CityWeatherComponent } from './city-weather/city-weather.component';
+import { CitiesListComponent } from './cities-list/cities-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CityWeatherComponent } from './city-weather/city-weather.component';
     HomeComponent,
     ToolbarComponent,
     SearchCityComponent,
-    CityWeatherComponent
+    CityWeatherComponent,
+    CitiesListComponent
   ],
   imports: [
     BrowserModule,

@@ -7,17 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   current: any;
+  cities: any[] = [];
 
   constructor() {
   }
 
   ngOnInit() {
-    // TODO: Fetch a list weather on random cities
   }
 
   searchEvent(current) {
     this.current = current
-    console.log(current)
   }
-
 }

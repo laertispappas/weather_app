@@ -25,7 +25,6 @@ export class SearchCityComponent implements OnInit {
 
   fetchWeather() {
     this._weatherService.getForecast(this.search).subscribe((weather) => {
-      console.log(weather);
       this.searchResult.emit(weather)
     }, (error) => {
       // TODO handle error here with a notification service
