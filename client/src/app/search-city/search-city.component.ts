@@ -15,6 +15,7 @@ export class SearchCityComponent implements OnInit, OnDestroy {
   private sub: any;
   search;
   result: any;
+  loading: boolean;
 
   constructor(private _weatherService: WeatherService,
               private _alertService: AlertService,
@@ -32,10 +33,14 @@ export class SearchCityComponent implements OnInit, OnDestroy {
       this.search.country = params['country'];
 
       if(this.search.city || this.search.country) {
+        this.loading = true;
+
         this._weatherService.search(this.search).subscribe((city) => {
           this.result = city;
+          this.loading = false;
         },(error) => {
           this.result = null;
+          this.loading = false;
           this._alertService.error(error.json().error);
         });
       }

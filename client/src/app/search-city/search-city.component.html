@@ -23,4 +23,6 @@
   </div>
 </form>
 
+<app-preloader *ngIf="loading"></app-preloader>
+
 <app-city-weather *ngIf="result" [current]="result"></app-city-weather>

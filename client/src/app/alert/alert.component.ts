@@ -15,8 +15,6 @@ export class AlertComponent implements OnInit {
   ngOnInit() {
     this.alertService.getMessage().subscribe(message => {
       this.message = message;
-      console.log("Got message ******************");
-      console.log(this.message)
     });
   }
 
