@@ -1,6 +1,6 @@
 module OpenWeather
   module Configuration
-    CONFIG_ATTRS = [:api_key, :icon_url].freeze
+    CONFIG_ATTRS = [:api_key, :icon_url, :default_unit].freeze
 
     def configure
       return unless block_given?
@@ -22,6 +22,7 @@ module OpenWeather
       def set_default_values
         self.api_key = nil
         self.icon_url = "http://openweathermap.org/img/w/:icon"
+        self.default_unit = 'metric'
       end
     end
   end

@@ -10,7 +10,7 @@ module Api
           }
 
           before do
-            stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=#{OpenWeather.configuration.api_key}&q=Athens,GR").
+            stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=#{OpenWeather.configuration.api_key}&q=Athens,GR&units=metric").
               to_return(status: 200, body: weather_payload.to_json)
 
             get :show, params: { format: :json, city: 'Athens', country: 'GR' }
@@ -30,7 +30,7 @@ module Api
 
         context 'whe city can not be found' do
           before do
-            stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=Some&q=?,?").
+            stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=Some&q=?,?&&units=metric").
               to_return(status: 404, body: create_weather_not_found.to_json, headers: {})
             get :show, params: { format: :json, city: '?', country: '?' }
           end
@@ -41,7 +41,7 @@ module Api
 
         context 'on other error' do
           before do
-            stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=Some&q=?,?").
+            stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=Some&q=?,?&units=metric").
               to_return(status: 500, body: {stubbed: :response}.to_json, headers: {})
             get :show, params: { format: :json, city: '?', country: '?' }
           end

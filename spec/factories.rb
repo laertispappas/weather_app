@@ -72,9 +72,96 @@ def create_weather_payload(**kwargs)
       "sunset": 1500658979
     },
     "id": #{kwargs[:id] || 1},
-    "name": "#{kwargs[:name] || "Athens"}",
+    "name": "#{kwargs[:city] || "Athens"}",
     "cod": 200
   }
+  JSON
+
+  JSON.parse(json)
+end
+
+def create_forecast_response(**kwargs)
+  json = <<-JSON
+  {
+    "city": {
+      "id": 1851632,
+      "name": "#{kwargs[:city] || "Shuzenji"}",
+      "coord": {
+        "lon": 138.933334,
+        "lat": 34.966671
+      },
+     "country": "#{kwargs[:country] || "JS"}"
+     },
+      "cod": "200",
+      "message": 0.0045,
+      "cnt": 38,
+      "list": [
+      {
+        "dt": 1406106000,
+        "main": {
+        "temp": 298.77,
+        "temp_min": 298.77,
+        "temp_max": 298.774,
+        "pressure": 1005.93,
+        "sea_level": 1018.18,
+        "grnd_level": 1005.93,
+        "humidity": "87",
+        "temp_kf": 0.26
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04d"
+        }
+      ],
+      "clouds": {
+        "all": 88
+      },
+      "wind": {
+        "speed": 5.71,
+        "deg": 229.501
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2014-07-23 09:00:00"
+      },
+      {
+        "dt": 1406106000,
+        "main": {
+        "temp": 298.77,
+        "temp_min": 298.77,
+        "temp_max": 298.774,
+        "pressure": 1005.93,
+        "sea_level": 1018.18,
+        "grnd_level": 1005.93,
+        "humidity": "87",
+        "temp_kf": 0.26
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds2",
+          "description": "overcast clouds2",
+          "icon": "05d"
+        }
+      ],
+      "clouds": {
+        "all": 88
+      },
+      "wind": {
+        "speed": 5.71,
+        "deg": 229.501
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2014-07-23 12:00:00"
+      }
+    ]
+    }
   JSON
 
   JSON.parse(json)

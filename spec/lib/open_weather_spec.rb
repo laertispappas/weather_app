@@ -20,17 +20,34 @@ describe OpenWeather do
     end
   end
 
+  describe 'ForecastMethods' do
+    context '.forecast' do
+      context 'on valid request' do
+        let(:response_hash) { create_forecast_response }
+
+        subject { OpenWeather.forecast(city: 'Athens', country: 'Greece') }
+
+        before do
+          stub_request(:get, "http://api.openweathermap.org/data/2.5/forecast?appid=#{OpenWeather.configuration.api_key}&q=Athens,Greece&units=metric").
+            to_return(status: 200, body: response_hash.to_json, headers: {})
+        end
+
+        it { expect(subject).to eq response_hash }
+      end
+    end
+  end
+
   describe 'CurrentWeatherMethods' do
     context '.city' do
-      subject { OpenWeather.city(name: 'Athens', country: 'Greece') }
+      subject { OpenWeather.city(city: 'Athens', country: 'Greece') }
 
       context 'Given a valid request' do
         let(:weather_payload) do
-          create_weather_payload(name: 'Athens', country: "GR", id: 1)
+          create_weather_payload(city: 'Athens', country: "GR", id: 1)
         end
 
         before do
-          stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=#{OpenWeather.configuration.api_key}&q=Athens,Greece").
+          stub_request(:get, "http://api.openweathermap.org/data/2.5/weather?appid=#{OpenWeather.configuration.api_key}&q=Athens,Greece&units=metric").
             to_return(status: 200, body: weather_payload.to_json, headers: {})
         end
 

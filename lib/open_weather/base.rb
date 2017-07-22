@@ -19,6 +19,8 @@ module OpenWeather
   class Base
     include HttpClient
 
+    VALID_ATTRS = [:city, :country, :units]
+
     attr_reader :options
 
     def initialize(**options)
@@ -31,7 +33,17 @@ module OpenWeather
 
     private
     def extract_options(options)
+      options = options.slice(* VALID_ATTRS)
       options[:appid] = OpenWeather.configuration.api_key
+
+      if options[:city] || options[:country]
+        options[:q] = "#{options[:city]},#{options[:country]}"
+        options.delete(:city)
+        options.delete(:country)
+      end
+
+      options[:units] ||= OpenWeather.configuration.default_unit
+
       options
     end
 

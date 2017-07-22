@@ -1,5 +1,3 @@
-class Weather
-  include ActiveModel::Model
-
+class Weather < Base
   attr_accessor :description, :icon
 end

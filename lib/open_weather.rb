@@ -14,12 +14,22 @@ module OpenWeather
     #
     # Examples:
     #
-    #   OpenWeather.city(name: 'Athens', country: 'Greece')
+    #   OpenWeather.city(city: 'Athens', country: 'Greece')
+    #   OpenWeather.city(city: 'Athens', country: 'Greece', units: 'metric')
     #
-    def city(name: nil, country: nil)
-      Current.new(name: name, country: country).fetch
+    def city(**kwargs)
+      Current.new(kwargs).fetch
+    end
+  end
+
+  module ForeCastMethods
+    # Get forecast data for a location
+    #
+    def forecast(**kwargs)
+      Forecast.new(kwargs).fetch
     end
   end
 
   extend CurrentWeatherMethods
+  extend ForeCastMethods
 end
