@@ -20,7 +20,7 @@ export class WeatherService {
         .map(res => res.json())
     }
 
-    getForecast(object) {
+    search(object) {
       return this._http.get(this.forecastUrl, { params: object })
         .map(res => res.json())
     }

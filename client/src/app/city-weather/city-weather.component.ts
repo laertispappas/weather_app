@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CityWeatherComponent implements OnInit {
   @Input() current:any;
+  @Input() showForecastLink: boolean;
 
   constructor() { }
 

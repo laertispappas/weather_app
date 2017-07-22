@@ -1,10 +1,9 @@
-<p class="flow-text">Forecast for ({{ current.city.country }}) {{ current.city.name }}</p>
-
 <div class="row">
   <div class="col s12 m8 offset-m2" *ngFor="let details of current.details">
     <div class="card-panel grey lighten-5 z-depth-1">
+      <p class="flow-text"><span *ngIf="current.city.country">({{ current.city.country }})</span> {{ current.city.name }}</p>
       <div class="row valign-wrapper">
-        <div class="col s2">
+        <div class="col s3">
           <img src="http://openweathermap.org/img/w/01d.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
           <div class="row">
             <div class="col s12">
@@ -16,7 +15,7 @@
           </div>
         </div>
 
-        <div class="col s10">
+        <div class="col s9">
           <div class="row temperature">
             <div class="col s12 m6">
               <span class="badge yellow left">{{ details.max_temp }}</span>

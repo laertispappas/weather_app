@@ -1,4 +1,4 @@
-<form (ngSubmit)="fetchWeather()" #f="ngForm" >
+<form (ngSubmit)="navigate()" #f="ngForm" >
   <div class="row">
     <div class="input-field col s6">
       <input id="country"
@@ -22,3 +22,5 @@
     </div>
   </div>
 </form>
+
+<app-city-weather *ngIf="result" [current]="result"></app-city-weather>

@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Router } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 
 import {WeatherService} from '../services/weather.service';
 
@@ -8,12 +10,12 @@ import {WeatherService} from '../services/weather.service';
   styleUrls: ['./search-city.component.css']
 })
 
-export class SearchCityComponent implements OnInit {
-  @Output() searchResult: EventEmitter<any> = new EventEmitter<any>();
-
+export class SearchCityComponent implements OnInit, OnDestroy {
+  private sub: any;
   search;
+  result: any;
 
-  constructor(private _weatherService: WeatherService) {
+  constructor(private _weatherService: WeatherService, private router: Router, private route: ActivatedRoute) {
     this.search = {
       city: "",
       country: ""
@@ -21,16 +23,27 @@ export class SearchCityComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.search.city = params['city'];
+      this.search.country = params['country'];
+
+      if(this.search.city || this.search.country) {
+        this._weatherService.search(this.search).subscribe((city) => {
+          this.result = city;
+        },(error) => {
+          // TODO: Notification service here
+          console.log(error);
+        });
+      }
+    })
   }
 
-  fetchWeather() {
-    this._weatherService.getForecast(this.search).subscribe((weather) => {
-      this.searchResult.emit(weather)
-    }, (error) => {
-      // TODO handle error here with a notification service
-      this.searchResult.emit(null)
-      console.log(error);
-    })
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  navigate() {
+    this.router.navigate(["/search", this.search.country, this.search.city]);
   }
 
 }
