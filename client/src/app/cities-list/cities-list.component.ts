@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {WeatherService} from '../services/weather.service';
+import {AlertService} from '../services/alert.service';
 
 @Component({
   selector: 'app-cities-list',
@@ -11,7 +12,8 @@ export class CitiesListComponent implements OnInit {
   cities: Array<any>;
   loading: boolean;
 
-  constructor(private _weatherService: WeatherService) {
+  constructor(private _weatherService: WeatherService,
+              private _alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -21,8 +23,7 @@ export class CitiesListComponent implements OnInit {
       this.loading = false;
     }, (error) => {
       this.loading = false;
-      // TODO: handle error here with notification service
-      console.log(error);
+      this._alertService.error(error.json().error);
     })
   }
 
