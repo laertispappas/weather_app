@@ -1,7 +1,8 @@
 <app-preloader *ngIf="loading"></app-preloader>
 
 <div *ngIf="cities">
+  <h3>Around</h3>
   <div *ngFor="let city of cities">
-    <app-city-weather [current]="city"></app-city-weather>
+    <app-city-weather [current]="city" [showForecastLink]="true"></app-city-weather>
   </div>
 </div>

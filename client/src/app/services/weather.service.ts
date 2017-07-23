@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map'
 export class WeatherService {
     private url = environment.apiBase + 'weather'
     private forecastUrl = environment.apiBase + 'forecast'
-    private citiestUrl = environment.apiBase + 'cities'
+    private citiesUrl = environment.apiBase + 'cities'
 
     constructor(private _http: Http){
     }
@@ -26,7 +26,7 @@ export class WeatherService {
     }
 
     getCities() {
-      return this._http.get(this.citiestUrl).
+      return this._http.get(this.citiesUrl).
         map(res => res.json());
     }
 }

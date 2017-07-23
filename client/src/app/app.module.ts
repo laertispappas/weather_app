@@ -17,6 +17,7 @@ import { CityWeatherComponent } from './city-weather/city-weather.component';
 import { CitiesListComponent } from './cities-list/cities-list.component';
 import { AlertComponent } from './alert/alert.component';
 import { PreloaderComponent } from './preloader/preloader.component';
+import { CityComponent } from './city/city.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     CityWeatherComponent,
     CitiesListComponent,
     AlertComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    CityComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,14 @@
 <div class="row">
   <div class="col s12 m8 offset-m2" *ngFor="let details of current.details">
     <div class="card-panel grey lighten-5 z-depth-1">
-      <p class="flow-text"><span *ngIf="current.city.country">({{ current.city.country }})</span> {{ current.city.name }}</p>
+      <p class="flow-text" *ngIf="!showForecastLink">
+        <span *ngIf="current.city.country">({{ current.city.country }})</span> {{ current.city.name }}
+      </p>
+      <p *ngIf="showForecastLink">
+        <a [routerLink]="['/cities', current.city.id]">
+          <span *ngIf="current.city.country">({{ current.city.country }})</span> {{ current.city.name }}
+        </a>
+      </p>
       <div class="row valign-wrapper">
         <div class="col s3">
           <img src="http://openweathermap.org/img/w/01d.png" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
