@@ -13,6 +13,7 @@ import {AlertService} from '../services/alert.service';
 export class CityComponent implements OnInit, OnDestroy {
   private sub: any;
   city: any;
+  loading: boolean;
 
   constructor(private _weatherService: WeatherService,
               private _alertService: AlertService,
@@ -21,12 +22,15 @@ export class CityComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.sub = this.route.params.subscribe(params => {
       this._weatherService.search({id: params['id']}).subscribe((city) => {
         this.city = city;
+        this.loading = false;
       },(error) => {
         this.city = null;
         this._alertService.error(error.json().error);
+        this.loading = false;
       });
     })
   }
