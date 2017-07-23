@@ -41,6 +41,14 @@ module Api
             expect(json['details'][1]['weather']['description']).to eq "overcast clouds2"
             expect(json['details'][1]['weather']['icon']).to eq "http://openweathermap.org/img/w/05d.png"
           end
+
+          context 'finding forecast by city id' do
+            before do
+              get :show, params: { id: 1, format: :json }
+            end
+
+            it 'responds with the correct payload'
+          end
         end
 
         # TODO DRY this
@@ -50,7 +58,7 @@ module Api
         # TODO DRY this
         context 'when the city can not be found' do
           before do
-            stub_request(:get, "http://api.openweathermap.org/data/2.5/forecast?appid=Some&city&country&units=metric").
+            stub_request(:get, "http://api.openweathermap.org/data/2.5/forecast?appid=Some&units=metric").
               to_return(status: 404, body: {a: 1}.to_json, headers: {})
 
             get :show, params: { format: :json }

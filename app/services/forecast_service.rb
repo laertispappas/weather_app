@@ -4,6 +4,7 @@ class ForecastService
   def call
     forecast = OpenWeather.forecast(city: params[:city],
                                     country: params[:country],
+                                    id: params[:id],
                                     units: params[:units])
 
     build_forecast(forecast)
