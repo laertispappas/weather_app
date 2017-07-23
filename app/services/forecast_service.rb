@@ -11,6 +11,16 @@ class ForecastService
   end
 
   private
+
+  def cache_key
+    key = ""
+    key += params[:city] if params[:city].present?
+    key += params[:country] if params[:country].present?
+    key += params[:id] if params[:id].present?
+    key += params[:unit] if params[:unit].present?
+    key
+  end
+
   def build_forecast(forecast)
     Forecast.new.tap do |instance|
       instance.city = build_city(forecast['city'])

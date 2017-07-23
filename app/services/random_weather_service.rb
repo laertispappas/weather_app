@@ -10,6 +10,11 @@ class RandomWeatherService
   end
 
   private
+
+  def cache_key
+    params[:client_ip]
+  end
+
   def build(result)
     result['list'].map do |item|
       build_forecast(item)

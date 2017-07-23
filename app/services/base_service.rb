@@ -6,10 +6,34 @@ module BaseService
   end
 
   def call
-    handle_exception { Result::Success.new(super) }
+    with_caching { handle_exception { Result::Success.new(super) } }
   end
 
   private
+
+  def with_caching
+    if cache_key.present?
+      Rails.cache.fetch(cache_key, expires_params) { yield }
+    else
+      yield
+    end
+  end
+
+  def cache_key
+    if defined?(super)
+      super
+    else
+      nil
+    end
+  end
+
+  def expires_params
+    if defined?(super)
+      super
+    else
+      { expires_in: 3.hours }
+    end
+  end
 
   def handle_exception
     yield
@@ -20,5 +44,4 @@ module BaseService
   rescue StandardError => e
     Result::Failure.new('Internal server error', { status: 500 })
   end
-
 end
