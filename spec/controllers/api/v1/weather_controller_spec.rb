@@ -60,7 +60,15 @@ module Api
           end
         end
 
-        context 'on faulure' do
+        context 'on failure' do
+          let(:exception) { StandardError.new('None') }
+          before do
+            allow(OpenWeather).to receive(:find).and_raise(exception)
+            get :index, params: { format: :json }
+          end
+
+          it { expect(json['error']).to eq 'Internal server error' }
+          it { expect(response.status).to eq 500 }
         end
       end
       describe 'GET #show' do

@@ -17,6 +17,8 @@ module BaseService
     Result::Failure.new("City not found", { status: 404 })
   rescue OpenWeather::Error => e
     Result::Failure.new(e.message, { status: 400 })
+  rescue StandardError => e
+    Result::Failure.new('Internal server error', { status: 500 })
   end
 
 end

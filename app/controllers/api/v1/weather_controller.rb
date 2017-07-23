@@ -5,7 +5,7 @@ module Api
         RandomWeatherService.new(client_ip: request.remote_ip).call.on_success { |cities|
           render json: cities
         }.on_failure { |msg, data|
-          render json: { error: error_msg }, status: data[:status]
+          render json: { error: msg }, status: data[:status]
         }
       end
 
